@@ -5,6 +5,7 @@ import Technologies from '../Technologies/Technologies';
 import HeroSection from '../HeoSection/HeroSection';
 import Appointment from '../Appointment/Appointment';
 import Reviwe from '../Reviwe/Reviwe';
+import BestDoctor from '../BestDoctor/BestDoctor';
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
             <Technologies></Technologies>
             <HeroSection></HeroSection>
             <Appointment></Appointment>
+            <BestDoctor></BestDoctor>
             <Reviwe></Reviwe>
         </div>
     );

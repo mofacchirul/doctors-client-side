@@ -13,6 +13,20 @@ import Createaccount from './Componets/Auth/CreateAccount/CreateAccount';
 import Login from './Componets/Auth/Login/Login';
 import { ToastContainer } from 'react-toastify';
 import Provider from './Componets/Provider/Provider';
+
+
+import {
+ QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+const queryClient = new QueryClient()
+
+
+
+
+
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,12 +55,14 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
 
     <StrictMode>
-    <Provider>
+  <QueryClientProvider client={queryClient}>
+  <Provider>
     <RouterProvider  router={router} />
 
 <ToastContainer />
     </Provider>
-    
+  </QueryClientProvider>
+
   </StrictMode>
 
 )
