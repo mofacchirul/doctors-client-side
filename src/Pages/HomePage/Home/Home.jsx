@@ -6,6 +6,7 @@ import HeroSection from '../HeoSection/HeroSection';
 import Appointment from '../Appointment/Appointment';
 import Reviwe from '../Reviwe/Reviwe';
 import BestDoctor from '../BestDoctor/BestDoctor';
+import Contact from '../../Contak/Contack';
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
             <Appointment></Appointment>
             <BestDoctor></BestDoctor>
             <Reviwe></Reviwe>
+            <Contact></Contact>
         </div>
     );
 };

@@ -7,15 +7,20 @@ import Lottie from "lottie-react";
 import Socail from "../Social/Socail";
 import { AuthContext } from "../../Provider/Auth";
 import { toast } from "react-toastify";
-
+const Img_key = import.meta.env.VITE_IMG_KEY;
+const image_hosting = `https://api.imgbb.com/1/upload`;
 const Createaccount = () => {
   const [view, setView] = useState(true);
   const [views, setViews] = useState(true);
-  const {createUser}=useContext(AuthContext);
+  const {createUser,updateUser}=useContext(AuthContext);
 const naviget = useNavigate()
+const [previewImage, setPreviewImage] = useState(null);
+const [imageFile, setImageFile] = useState(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    image: "", 
     password: "",
     confirmPassword: "",
   });
@@ -32,32 +37,87 @@ const naviget = useNavigate()
     return passwordRegex.test(password);
   };
 
-  const handleSubmit = (e) => {
+ 
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
+    setPreviewImage(URL.createObjectURL(file));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Password match check
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match!");
       return;
     }
+  
+    // Password validation check
     if (!validatePassword(formData.password)) {
-        setError("Password must contain at least 1 uppercase, 1 lowercase, 1 number, and be 6+ characters long.");
+      setError(
+        "Password must contain at least 1 uppercase, 1 lowercase, 1 number, and be 6+ characters long."
+      );
+      return;
+    }
+  
+    let imageUrl = "";
+  
+    // ✅ Image Upload Section
+    if (imageFile) {
+      const imageFormData = new FormData(); // avoid conflict with formData object
+      imageFormData.append("image", imageFile);
+  
+      try {
+        const imgResponse = await fetch(`${image_hosting}?key=${Img_key}`, {
+          method: "POST",
+          body: imageFormData,
+        });
+  
+        const imgData = await imgResponse.json();
+        console.log("Image Upload Response:", imgData); // Debug
+  
+        if (imgData.success) {
+          imageUrl = imgData.data.url;
+        } else {
+          alert("Image upload failed: " + imgData.error?.message || "Unknown error");
+          return;
+        }
+      } catch (error) {
+        console.error("Image upload failed:", error);
+        alert("Image upload failed!");
         return;
       }
-      console.log(formData);
+
+    }
+  
+    // ✅ Prepare final form data to send
+    const finalFormData = {
+      ...formData,
+      image: imageUrl,
+    };
+  
+    console.log("User Data:", finalFormData); // Debug
+  
+    // ✅ Create user using context method
+    createUser(formData.email, formData.password)
+      .then((result) => {
+        console.log("User Created:", result.user.email);
+        updateUser(result.user, {
+          displayName: formData.name,
+          photoURL: imageUrl,
+        });
+        toast.success(`${result.user.email} Registered Successfully`);
+        naviget('/');
+      })
+      .catch((error) => {
+        console.error("Error during user creation:", error);
+        toast.error("User creation failed. Please try again.");
+      });
       
-      createUser(formData.email,formData.password)
-      .then((result) =>{
-        console.log(result.user.email);
-        
-       toast.success(`${result.user.email} Logged Successfully`)
-       naviget('/')
-      }
-     
-      
-      )
-   
-   
-    // Backend logic goes here
   };
+  
 
   return (
     <div className="flex justify-center lg:flex-row-reverse items-center  py-8 lg:py-12 ">
@@ -96,6 +156,24 @@ const naviget = useNavigate()
               required
             />
           </div>
+  
+          <div className="mt-4">
+          <label className="block font-bold">Upload Image:</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="w-full p-2 mt-2 border border-gray-300 rounded"
+          />
+          {previewImage && (
+            <img
+              src={previewImage}
+              alt="Preview"
+              className="mt-4 w-32 h-32 object-cover rounded-lg"
+            />
+          )}
+        </div>
+
           {/* Password Field */}
           <div className="relative">
             <label className="block  font-semibold">Password</label>

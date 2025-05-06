@@ -18,9 +18,9 @@ const BestDoctor = () => {
             Here you can see our insurance plans that include individual group and family plan.
             </p>
         </div>
- <div className="p-8 flex flex-wrap gap-4 justify-center items-stretch">
+ <div data-aos="fade-right" className="p-8 flex flex-wrap gap-4 justify-center items-stretch">
       {/* WHY US */}
-      <div className="bg-white rounded-lg shadow-md p-5 w-full md:w-[300px] flex flex-col h-full">
+      <div data-aos="fade-right"  className="bg-white rounded-lg shadow-md p-5 w-full md:w-[300px] flex flex-col h-full">
         <h2 className="text-2xl font-semibold mb-4">WHY US?</h2>
         <p className="text-lg mb-6">what we offer to you</p>
         {[1, 2, 3, 4, 5].map((num, i) => (
@@ -36,9 +36,10 @@ const BestDoctor = () => {
       </div>
 
       {/* Best Doctors */}
-      <div className="bg-white  rounded-lg shadow-md p-5 w-full md:w-[300px] text-center flex flex-col h-full">
+      <div   className="bg-white  rounded-lg shadow-md p-5 w-full md:w-[300px] text-center flex flex-col h-full">
         <h3 className="text-2xl font-semibold  ">The best doctors</h3>
         <img
+        data-aos="fade-up" 
           src="https://i.ibb.co.com/prvpbq7F/about.png"
           alt="Doctor"
           className="mx-auto h-60 lg:h-72 mb-2  rounded-lg"
@@ -50,14 +51,14 @@ const BestDoctor = () => {
 
       {/* Last Column with Two Cards */}
       <div className="space-y-3 w-full md:w-[300px] flex flex-col h-full">
-        <div className="bg-white rounded-lg shadow-md p-8 flex-1">
+        <div data-aos="fade-left" className="bg-white rounded-lg shadow-md p-8 flex-1">
           <h3 className="text-2xl font-semibold  mb-2">Flexible plans</h3>
           <p className="text-sm text-gray-600">
             Soluta iisque no vaiestatis iisque no vaiestatis ericula sapientem ericula sapientem cum ei, et usu ignota cetero.
           </p>
         </div>
 
-        <div className="rounded-lg shadow-md p-8 flex-1 bg-gradient-to-r from-blue-400 to-indigo-500 text-white">
+        <div data-aos="fade-down"  className="rounded-lg shadow-md p-8 flex-1 bg-gradient-to-r from-blue-400 to-indigo-500 text-white">
           <h3 className="text-xl font-semibold mb-4">BEST FOR YOU</h3>
           <p className="mb-6">
             Soluta iisque no vaiestatis ericula sapientem cum ei, et usu ignota cetero.

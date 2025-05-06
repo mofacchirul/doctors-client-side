@@ -5,6 +5,8 @@ import { AuthContext } from '../Provider/Auth';
 const Navbar = () => {
  
    const {user,logOut}= useContext(AuthContext);
+   console.log(user);
+   
     const Links = <>
     <li>
       <NavLink to='/' className="hover:bg-transparent  hover:text-inherit">Home</NavLink>
@@ -13,13 +15,13 @@ const Navbar = () => {
       <NavLink to='/alldoctors' className="hover:bg-transparent hover:text-inherit">All Doctors</NavLink>
     </li>
     <li>
-      <NavLink to='/' className="hover:bg-transparent hover:text-inherit">About</NavLink>
+      <NavLink to='/about' className="hover:bg-transparent hover:text-inherit">About</NavLink>
     </li>
     <li>
       <NavLink to='/' className="hover:bg-transparent hover:text-inherit">Blog</NavLink>
     </li>
     <li>
-      <NavLink to='/' className="hover:bg-transparent hover:text-inherit">Contack Us</NavLink>
+      <NavLink to='/contack' className="hover:bg-transparent hover:text-inherit">Contack Us</NavLink>
     </li>
   </>
   
@@ -56,7 +58,11 @@ const Navbar = () => {
           {
             user ? 
             <>
-               <button onClick={logOut} className="btn   mt-4 rounded-2xl">
+            <div>
+            <img  className="w-12  h-12 rounded-full mr-2" src={user?.image } alt="" />
+
+            </div>
+               <button onClick={logOut} className="btn bg-red-700 text-white  mt-4 rounded-2xl">
                 Sign Out
               </button>
             </>

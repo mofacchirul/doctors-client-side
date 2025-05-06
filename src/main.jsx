@@ -19,6 +19,8 @@ import {
  QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import BestDoctor from './Pages/HomePage/BestDoctor/BestDoctor';
+import Contact from './Pages/Contak/Contack';
 const queryClient = new QueryClient()
 
 
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
 {
   path:'/alldoctors',
   element:<AllDoctor></AllDoctor>
+},
+{
+path:'/about',
+element:<BestDoctor></BestDoctor>
+},
+{
+path:'/contack',
+element:<Contact></Contact>
 },
 {
   path:"/createaccount",
