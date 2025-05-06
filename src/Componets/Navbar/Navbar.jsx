@@ -18,7 +18,7 @@ const Navbar = () => {
       <NavLink to='/about' className="hover:bg-transparent hover:text-inherit">About</NavLink>
     </li>
     <li>
-      <NavLink to='/' className="hover:bg-transparent hover:text-inherit">Blog</NavLink>
+      <NavLink to='/blog' className="hover:bg-transparent hover:text-inherit">Blog</NavLink>
     </li>
     <li>
       <NavLink to='/contack' className="hover:bg-transparent hover:text-inherit">Contack Us</NavLink>

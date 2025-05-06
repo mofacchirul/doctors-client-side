@@ -7,6 +7,7 @@ import Appointment from '../Appointment/Appointment';
 import Reviwe from '../Reviwe/Reviwe';
 import BestDoctor from '../BestDoctor/BestDoctor';
 import Contact from '../../Contak/Contack';
+import BlogPage from '../../Blog/Blog';
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
             <HeroSection></HeroSection>
             <Appointment></Appointment>
             <BestDoctor></BestDoctor>
+            <BlogPage></BlogPage>
             <Reviwe></Reviwe>
             <Contact></Contact>
         </div>
