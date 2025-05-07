@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Coursestan from "./UseTanStack";
-
+import { GoArrowRight } from "react-icons/go";
+import { Link } from "react-router-dom";
 const DoctorList = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const categories = [
@@ -59,10 +60,18 @@ const DoctorList = () => {
                     className="w-60 mx-auto rounded-2xl h-full object-cover"
                   />
                 </div>
-                <p className="text-sm text-green-600">Available</p>
+                <p className="text-sm text-blue-400">Available</p>
                 <h3 className="text-xl font-semibold">{doctor.name}</h3>
-                <p className="text-sm">{doctor.specialty}</p>
-              </div>
+<div className="flex justify-between items-center">
+<p className="text-sm">{doctor.specialty}</p>
+<Link to={`/all_doctors_detels/${doctor._id}`}>
+<p className="text-blue-400 flex items-center justify-center text-sm">
+  ReadMore.....
+<GoArrowRight className="mt-2 text-xl" /> 
+</p>
+</Link>
+</div>
+         </div>
             ))}
           </div>
         </div>

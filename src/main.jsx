@@ -1,3 +1,5 @@
+// index.js
+
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
@@ -12,72 +14,56 @@ import AllDoctor from './Pages/AllDoctors/AllDoctors';
 import Createaccount from './Componets/Auth/CreateAccount/CreateAccount';
 import Login from './Componets/Auth/Login/Login';
 import { ToastContainer } from 'react-toastify';
-import Provider from './Componets/Provider/Provider';
 
+// ✅ Rename your custom Auth provider
+import AuthProvider from './Componets/Provider/Provider';
+
+import { Provider } from 'react-redux'; // redux provider
+import { store } from './Redux/store';
 
 import {
  QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+
 import BestDoctor from './Pages/HomePage/BestDoctor/BestDoctor';
 import Contact from './Pages/Contak/Contack';
 import BlogPage from './Pages/Blog/Blog';
+import All_Doctors_detels from './Pages/AllDoctors/All_Doctors_detels/All_Doctors_detels';
+import UserProfile from './Pages/UserProfile/UserProfil';
+
 const queryClient = new QueryClient()
-
-
-
-
-
-
 
 const router = createBrowserRouter([
   {
     path: "/",
     element:<MainLayout></MainLayout>,
     children:[
-{
-  path:'/',
-  element:<Home></Home>
-},
-{
-  path:'/alldoctors',
-  element:<AllDoctor></AllDoctor>
-},
-{
-path:'/about',
-element:<BestDoctor></BestDoctor>
-},
-{
-path:'/blog',
-element:<BlogPage></BlogPage>
-},
-{
-path:'/contack',
-element:<Contact></Contact>
-},
-{
-  path:"/createaccount",
-  element:<Createaccount></Createaccount>
-},
-{
-  path:"/login",
-  element:<Login></Login>
-}
+      { path:'/', element:<Home></Home> },
+      { path:'/alldoctors', element:<AllDoctor></AllDoctor> },
+      {
+        path:'/all_doctors_detels/:id',
+        element:<All_Doctors_detels></All_Doctors_detels>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/alldoctor/${params.id}`)
+      },
+      { path:'/about', element:<BestDoctor></BestDoctor> },
+      { path:'/blog', element:<BlogPage></BlogPage> },
+      { path:'/contack', element:<Contact></Contact> },
+      { path:"/createaccount", element:<Createaccount></Createaccount> },
+      { path:"/login", element:<Login></Login> },
+      { path:'/userprofile', element:<UserProfile></UserProfile> }
     ]
   },
 ]);
 
 createRoot(document.getElementById('root')).render(
-
-    <StrictMode>
-  <QueryClientProvider client={queryClient}>
-  <Provider>
-    <RouterProvider  router={router} />
-
-<ToastContainer />
-    </Provider>
-  </QueryClientProvider>
-
-  </StrictMode>
-
-)
+  <Provider store={store}>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <ToastContainer />
+      </AuthProvider>
+    </QueryClientProvider>
+  </Provider>
+);

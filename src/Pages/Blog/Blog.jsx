@@ -38,11 +38,11 @@ const BlogPage = () => {
      </div>
       <div className="grid py-5 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {blogs.map((blog) => (
-          <div key={blog.id} className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
+          <div key={blog.id} className="bg-white w-[330px] mx-auto shadow-lg duration-300 hover:-translate-y-2 p-1  hover:shadow-lg transition rounded-lg overflow-hidden flex flex-col h-full">
             <img src={blog.image} alt={blog.title} className="w-60 mx-auto rounded-2xl h-full object-cover" />
             <div className="p-4 flex flex-col justify-between flex-grow">
               <div>
-                <h2 className="text-xl font-semibold mb-2">{blog.title}</h2>
+                <h2 className="text-xl font-semibold">{blog.title}</h2>
                 <p className="text-gray-600 text-sm">{blog.description}</p>
               </div>
               <div className="mt-4 text-sm text-gray-500">

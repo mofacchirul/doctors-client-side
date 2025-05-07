@@ -66,22 +66,26 @@ const [imageFile, setImageFile] = useState(null);
   
     // ✅ Image Upload Section
     if (imageFile) {
-      const imageFormData = new FormData(); // avoid conflict with formData object
+      console.log("Uploading file:", imageFile);
+      const imageFormData = new FormData();
       imageFormData.append("image", imageFile);
-  
+    
       try {
-        const imgResponse = await fetch(`${image_hosting}?key=${Img_key}`, {
+        const uploadUrl = `${image_hosting}?key=${Img_key}`;
+        console.log("Uploading to:", uploadUrl);
+    
+        const imgResponse = await fetch(uploadUrl, {
           method: "POST",
           body: imageFormData,
         });
-  
+    
         const imgData = await imgResponse.json();
-        console.log("Image Upload Response:", imgData); // Debug
-  
+        console.log("Image Upload Response:", imgData);
+    
         if (imgData.success) {
           imageUrl = imgData.data.url;
         } else {
-          alert("Image upload failed: " + imgData.error?.message || "Unknown error");
+          alert("Image upload failed: " + (imgData.error?.message || "Unknown error"));
           return;
         }
       } catch (error) {
@@ -89,8 +93,8 @@ const [imageFile, setImageFile] = useState(null);
         alert("Image upload failed!");
         return;
       }
-
     }
+    
   
     // ✅ Prepare final form data to send
     const finalFormData = {
@@ -102,19 +106,26 @@ const [imageFile, setImageFile] = useState(null);
   
     // ✅ Create user using context method
     createUser(formData.email, formData.password)
-      .then((result) => {
-        console.log("User Created:", result.user.email);
-        updateUser(result.user, {
-          displayName: formData.name,
-          photoURL: imageUrl,
-        });
-        toast.success(`${result.user.email} Registered Successfully`);
-        naviget('/');
-      })
-      .catch((error) => {
-        console.error("Error during user creation:", error);
-        toast.error("User creation failed. Please try again.");
-      });
+  .then((result) => {
+    const userinfo= {
+      displayName:formData.name,
+       email :formData.email,
+      photoURL:imageUrl
+    }
+    console.log(userinfo);
+    updateUser(userinfo)
+    toast.success(`${result.email} Logged Successful`)
+    naviget('/')
+
+    
+  })
+  .catch((error) => {
+    console.error("Error during user creation:", error);
+    toast.error("User creation failed. Please try again.");
+  });
+
+
+  
       
   };
   
@@ -245,3 +256,21 @@ OR
 };
 
 export default Createaccount;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

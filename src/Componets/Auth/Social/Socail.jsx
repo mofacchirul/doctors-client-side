@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Provider/Auth';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Socail = () => {
-    const HandleGoogle =(Payload)=>{
-        console.log("this is google", Payload);
-        
+    const Navigate = useNavigate();
+const {googleSignIn}=useContext(AuthContext)
+    const HandleGoogle =()=>{
+        googleSignIn()
+        .then(result=>{
+              toast.success(`${result.email} Logged Successful`)
+              Navigate('/')
+        })
+      
     }
     return (
         <div>
