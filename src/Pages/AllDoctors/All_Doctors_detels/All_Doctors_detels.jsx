@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { MdVerified } from 'react-icons/md';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import Securecaxios from '../../../Axios/SecureAxios/SecureAxios';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../../Componets/Provider/Auth';
 
 const All_Doctors_detels = () => {
   const doctor = useLoaderData();
+  const {user}=useContext(AuthContext)
 const axios = Securecaxios()
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
-  console.log(selectedDate,selectedTime);
+ const navigate= useNavigate()
   
 {/* {selectedTime ? `Book appointment on ${selectedDate}, ${selectedTime}` : 'Select a slot to book'} */}
   const days = [
@@ -37,6 +40,7 @@ const axios = Securecaxios()
   
   const aparment= {
     name:doctor.name,
+    email:user.email,
     appointment:doctor.appointment_fee,
     img:doctor.img,
     specialty:doctor.specialty,
@@ -44,18 +48,16 @@ const axios = Securecaxios()
     selectedTime,
 
   }
-
-
-
     const HandleSubmit = async () => {
         if (!selectedDate || !selectedTime) {
-          alert("Please select a date and time slot before booking.");
+          toast.error("Please select a date and time slot before booking.");
           return;
         }
 
-    const response = await axios.post('/Appointment', aparment);
-    console.log('Appointment booked:', response.data);
-    alert("Appointment booked successfully!");
+    await axios.post('/appointment', aparment);
+
+    toast.success("Appointment booked successfully!");
+    navigate('/myappointment')
 }
   return (
     <div className="max-w-6xl mx-auto p-6">

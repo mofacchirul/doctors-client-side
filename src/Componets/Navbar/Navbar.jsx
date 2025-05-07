@@ -108,10 +108,12 @@ const Navbar = () => {
               >
                 <Link to={"/userprofile"}>
                   <li>My Profile</li>
-                </Link>
+                  </Link>
+                <Link to={"/myappointment"}>
                 <li>
-                  <a>Item 2</a>
+                My Appointment
                 </li>
+                </Link>
               </ul>
             </div>
             <button

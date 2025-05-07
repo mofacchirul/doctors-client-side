@@ -31,6 +31,7 @@ import Contact from './Pages/Contak/Contack';
 import BlogPage from './Pages/Blog/Blog';
 import All_Doctors_detels from './Pages/AllDoctors/All_Doctors_detels/All_Doctors_detels';
 import UserProfile from './Pages/UserProfile/UserProfil';
+import MyAppointment from './Pages/MyAppointment/MyAppointment';
 
 const queryClient = new QueryClient()
 
@@ -52,7 +53,8 @@ const router = createBrowserRouter([
       { path:'/contack', element:<Contact></Contact> },
       { path:"/createaccount", element:<Createaccount></Createaccount> },
       { path:"/login", element:<Login></Login> },
-      { path:'/userprofile', element:<UserProfile></UserProfile> }
+      { path:'/userprofile', element:<UserProfile></UserProfile> },
+      {path:'/myappointment',element:<MyAppointment></MyAppointment>}
     ]
   },
 ]);
