@@ -42,6 +42,14 @@ const Navbar = () => {
           Contack Us
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/dashbord"
+          className="hover:bg-transparent hover:text-inherit"
+        >
+         Dashbord
+        </NavLink>
+      </li>
     </>
   );
 
