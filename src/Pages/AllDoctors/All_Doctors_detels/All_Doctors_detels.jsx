@@ -46,8 +46,16 @@ const axios = Securecaxios()
   }
 
 
-const HandleSubmit=()=>{
-    axios.post('/Appointment',aparment)
+
+    const HandleSubmit = async () => {
+        if (!selectedDate || !selectedTime) {
+          alert("Please select a date and time slot before booking.");
+          return;
+        }
+
+    const response = await axios.post('/Appointment', aparment);
+    console.log('Appointment booked:', response.data);
+    alert("Appointment booked successfully!");
 }
   return (
     <div className="max-w-6xl mx-auto p-6">
@@ -111,7 +119,7 @@ const HandleSubmit=()=>{
         </div>
 
         <button
-        onSubmit={HandleSubmit}
+        onClick={HandleSubmit}
           disabled={!selectedTime}
           className="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold "
         >
