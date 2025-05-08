@@ -7,16 +7,17 @@ import Lottie from "lottie-react";
 import Socail from "../Social/Socail";
 import { AuthContext } from "../../Provider/Auth";
 import { toast } from "react-toastify";
+import Securecaxios from "../../../Axios/SecureAxios/SecureAxios";
 const Img_key = import.meta.env.VITE_IMG_KEY;
 const image_hosting = `https://api.imgbb.com/1/upload`;
 const Createaccount = () => {
+  const axios = Securecaxios();
   const [view, setView] = useState(true);
   const [views, setViews] = useState(true);
   const {createUser,updateUser}=useContext(AuthContext);
 const naviget = useNavigate()
 const [previewImage, setPreviewImage] = useState(null);
 const [imageFile, setImageFile] = useState(null);
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -112,6 +113,7 @@ const [imageFile, setImageFile] = useState(null);
        email :formData.email,
       photoURL:imageUrl
     }
+    axios.post('/user',userinfo)
     console.log(userinfo);
     updateUser(userinfo)
     toast.success(`${result.email} Logged Successful`)

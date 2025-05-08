@@ -15,74 +15,41 @@ const Dashbord = () => {
   };
  
   const links = (
-    <div className="lg:flex items-center ">
-      <>
-        <li className="">
-          <NavLink
-            to="/dashbord/adminhome"
-            className={({ isActive }) =>
-              isActive ? "bg-teal-900 text-white" : ""
-            }
-          >
+    <>
+         <li>
+           <NavLink to="/" className="hover:bg-transparent  hover:text-inherit">
             Admin Home
-          </NavLink>
-        </li>
-        <li className="">
-          <NavLink
-            to="/dashbord/coursePost"
-            className={({ isActive }) =>
-              isActive ? "bg-teal-900 text-white" : ""
-            }
-          >
-            CoursePost
-          </NavLink>
-        </li>
-
-        <li className="">
-          <NavLink
-            to="/dashbord/admin_blog"
-            className={({ isActive }) =>
-              isActive ? "bg-teal-900 text-white" : ""
-            }
-          >
-            Blog Management
-          </NavLink>
-        </li>
-        <li className="">
-          <NavLink
-            to="/dashbord/manage_applications"
-            className={({ isActive }) =>
-              isActive ? "bg-teal-900 text-white" : ""
-            }
-          >
-            Manage Applications
-          </NavLink>
-        </li>
-        <li className="">
-          <NavLink
-            to="/dashbord/announcements"
-            className={({ isActive }) =>
-              isActive ? "bg-teal-900 text-white" : ""
-            }
-          >
-            Announcements
-          </NavLink>
-        </li>
-
-        <li className="">
-          <NavLink
-            to="/dashbord/all_user"
-            className={({ isActive }) =>
-              isActive ? "bg-teal-900 text-white" : ""
-            }
-          >
-            ALL_User
-          </NavLink>
-        </li>
-      </>
-
-      <div className="divider"></div>
-    </div>
+           </NavLink>
+         </li>
+         <li>
+           <NavLink
+             to="/dashbord/doctorfrom"
+             className="hover:bg-transparent hover:text-inherit"
+           >
+             All Doctors
+           </NavLink>
+         </li>
+         <li>
+           <NavLink
+             to="/dashbord/blogcard"
+             className="hover:bg-transparent hover:text-inherit"
+           >
+            Blog
+           </NavLink>
+         </li>
+         <li>
+           <NavLink to="/dashbord/alluser" className="hover:bg-transparent hover:text-inherit">
+             All User
+           </NavLink>
+         </li>
+         <li>
+           <NavLink to="/" className="hover:bg-transparent hover:text-inherit">
+             Payment History
+           </NavLink>
+         </li>
+      
+        
+       </>
   );
 
   return (
@@ -155,7 +122,7 @@ const Dashbord = () => {
               </li>
               <li>
                 <button
-                  className="px-4 mt-3 py-2 bg-amber-500 text-white rounded-tr-2xl rounded-bl-2xl hover:bg-teal-950"
+                  className="btn rounded-4xl  mt-3  "
                   onClick={HandlesingOut}
                 >
                   Sing Out

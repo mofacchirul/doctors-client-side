@@ -33,6 +33,11 @@ import All_Doctors_detels from './Pages/AllDoctors/All_Doctors_detels/All_Doctor
 import UserProfile from './Pages/UserProfile/UserProfil';
 import MyAppointment from './Pages/MyAppointment/MyAppointment';
 import Dashbord from './DashBords/Dashbord';
+import Allusers from './DashBords/Page/Alluser/Alluser';
+import DoctorForm from './DashBords/Page/DoctorForm/DoctorForm';
+import PrivateRuter from './Private/UserPrivate/UserPrivate';
+import BlogForm from './DashBords/Page/BlogCard/BlogCard';
+
 
 const queryClient = new QueryClient()
 
@@ -45,7 +50,7 @@ const router = createBrowserRouter([
       { path:'/alldoctors', element:<AllDoctor></AllDoctor> },
       {
         path:'/all_doctors_detels/:id',
-        element:<All_Doctors_detels></All_Doctors_detels>,
+        element:<PrivateRuter><All_Doctors_detels></All_Doctors_detels></PrivateRuter>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/alldoctor/${params.id}`)
       },
@@ -56,9 +61,18 @@ const router = createBrowserRouter([
       { path:"/login", element:<Login></Login> },
       { path:'/userprofile', element:<UserProfile></UserProfile> },
       {path:'/myappointment',element:<MyAppointment></MyAppointment>},
-      {path:'/dashbord',element:<Dashbord></Dashbord>}
+
     ]
   },
+
+  {path:'/dashbord',
+    element:<Dashbord></Dashbord>,
+    children:[
+      {path:'alluser', element:<Allusers></Allusers>},
+      {path:'doctorfrom',element:<DoctorForm></DoctorForm>},
+      {path:'blogcard',element:<BlogForm></BlogForm>}
+    ]
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

@@ -47,7 +47,7 @@ appointment.map(item=>
                             onClick={() => handleCancel(item._id)}
                             className="px-4 py-2 border border-red-500 text-red-500 rounded hover:bg-red-100"
                         >
-                            Cancel appointment
+                            Cancel Appointment
                         </button>
                     </div>
       </div>
