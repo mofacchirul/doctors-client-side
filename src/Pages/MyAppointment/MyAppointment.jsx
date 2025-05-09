@@ -2,6 +2,7 @@ import React from 'react';
 import UserTanStack from './UserTanstack';
 import Securecaxios from '../../Axios/SecureAxios/SecureAxios';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const MyAppointment = () => {
     const [appointment,refetch,] = UserTanStack();
@@ -20,7 +21,7 @@ const MyAppointment = () => {
    
 
     return (
-        <div className="p-6 max-w-6xl mb-4 mx-auto">
+        <div className="p-6 space-y-2 max-w-6xl mb-4 mx-auto">
             <h2 className="text-4xl lg:5xl font-semibold mb-4 text-center">My appointments</h2>
            {
 appointment.map(item=>
@@ -40,12 +41,15 @@ appointment.map(item=>
         </div>
        </div >
        <div className="flex flex-col gap-2">
-                        <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                        <p className='flex justify-center items-center border py-1 rounded bg-green-600 text-white'>$ {item.price}</p>
+                       <Link to={'/payment'}>
+                       <button className="btn bg-blue-500  btn-block text-white rounded hover:bg-blue-600">
                             Pay Online
                         </button>
+                       </Link>
                         <button
                             onClick={() => handleCancel(item._id)}
-                            className="px-4 py-2 border border-red-500 text-red-500 rounded hover:bg-red-100"
+                            className="btn border border-red-500 text-red-500 rounded hover:bg-red-100"
                         >
                             Cancel Appointment
                         </button>

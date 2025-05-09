@@ -41,9 +41,9 @@ const axios = Securecaxios()
   const aparment= {
     name:doctor.name,
     email:user.email,
-    appointment:doctor.appointment_fee,
     img:doctor.img,
     specialty:doctor.specialty,
+    price:doctor.appointment_fee,
     selectedDate,
     selectedTime,
 

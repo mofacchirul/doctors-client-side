@@ -82,9 +82,10 @@ const naviget = useNavigate()
               className="input input-bordered"
               required
             />
+          
             <button
               type="button"
-              className='absolute mt-12 ml-[15rem]'
+              className='absolute mt-3 -ml-6 border-red-500'
               onClick={() => setView(!view)}
             >
               {view ? <FaRegEyeSlash /> : <FaEye />}
