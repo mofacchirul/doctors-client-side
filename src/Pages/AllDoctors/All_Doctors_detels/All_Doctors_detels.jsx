@@ -39,6 +39,7 @@ const axios = Securecaxios()
   ];
   
   const aparment= {
+    doctorId:doctor._id,
     name:doctor.name,
     email:user.email,
     img:doctor.img,

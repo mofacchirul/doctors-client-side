@@ -3,12 +3,14 @@ import UserTanStack from '../../../Pages/MyAppointment/UserTanstack';
 import Securecaxios from '../../../Axios/SecureAxios/SecureAxios';
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { AuthContext } from '../../../Componets/Provider/Auth';
+import { toast } from 'react-toastify';
+// import { useNavigate } from 'react-router-dom';
 
 
 const CheakoutFrom = () => {
-    const [appointment] = UserTanStack();
+    const [appointment,refetch] = UserTanStack();
 const [clientSecret,setClientSecret]=useState('')
-   
+//    const navigate=useNavigate()
     const stripe = useStripe();
     const elements = useElements();
     const [error, setError] = useState(null);
@@ -68,7 +70,30 @@ console.log(paymentMethod); // Example usage
 
         if (paymentIntent?.status === "succeeded") {
             setTransactionId(paymentIntent.id);
-        
+        const payment = {
+            email: user.email,
+            treansectionIds:paymentIntent.id,
+            price: totalPrice,
+            date: new Date(),
+            appointmentIds: appointment.map(item => item._id),
+            appointmentItemIds: appointment.map(item => item.doctorId),
+            status: "pending",
+        }
+
+
+        const res = await axios.post("/payment", payment);
+
+        if (res.data?.result?.insertedId) {
+            refetch();
+            toast.success("Payment SuccessFull")
+            // navigate("/paymenthistory");
+        }
+
+
+
+
+
+
         }
 
       
