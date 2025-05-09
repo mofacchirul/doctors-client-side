@@ -66,7 +66,7 @@ const axios = Securecaxios()
         <img
           src={doctor?.img}
           alt={doctor?.name}
-          className="mx-auto"
+          className="-ml-16"
         />
         <div className="md:col-span-2 ">
           <h2 className="text-2xl font-bold flex items-center gap-2 text-gray-800">

@@ -104,6 +104,7 @@ const Footer = () => {
               >
                 Subscribe
               </button>
+              <img src="https://i.ibb.co.com/nZNTSwb/Payment-img.png" className='h-20' alt="" />
             </form>
           </div>
 

@@ -4,13 +4,13 @@ import Securecaxios from '../../../Axios/SecureAxios/SecureAxios';
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { AuthContext } from '../../../Componets/Provider/Auth';
 import { toast } from 'react-toastify';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const CheakoutFrom = () => {
     const [appointment,refetch] = UserTanStack();
 const [clientSecret,setClientSecret]=useState('')
-//    const navigate=useNavigate()
+   const navigate=useNavigate()
     const stripe = useStripe();
     const elements = useElements();
     const [error, setError] = useState(null);
@@ -21,12 +21,14 @@ const {user}=useContext(AuthContext)
     const totalPrice = prices.reduce((total, price) => total + price, 0);
     useEffect(() => {
   
-            axios.post('/create-checkout-session', { price: totalPrice })
-                .then(res => {
-                    console.log("Stripe clientSecret:", res.data.clientSecret); // ✅ এটা দিয়ে চেক করো
-                    setClientSecret(res.data.clientSecret);
-                })
-                .catch(error => console.error("Error fetching clientSecret:", error));
+if(totalPrice > 0){
+    axios.post('/create-checkout-session', { price: totalPrice })
+    .then(res => {
+        console.log("Stripe clientSecret:", res.data.clientSecret); 
+        setClientSecret(res.data.clientSecret);
+    })
+    .catch(error => console.error("Error fetching clientSecret:", error));
+}
         
     }, [axios, totalPrice]);
     
@@ -82,11 +84,11 @@ console.log(paymentMethod); // Example usage
 
 
         const res = await axios.post("/payment", payment);
-
+   refetch();
         if (res.data?.result?.insertedId) {
-            refetch();
+           
             toast.success("Payment SuccessFull")
-            // navigate("/paymenthistory");
+            navigate("/");
         }
 
 

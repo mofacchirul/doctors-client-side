@@ -38,6 +38,7 @@ import DoctorForm from './DashBords/Page/DoctorForm/DoctorForm';
 import PrivateRuter from './Private/UserPrivate/UserPrivate';
 import BlogForm from './DashBords/Page/BlogCard/BlogCard';
 import Payment from './DashBords/Page/Payment/Payment';
+import Paymenthistory from './Pages/Paymenthistory/Paymenthistory';
 
 
 const queryClient = new QueryClient()
@@ -63,6 +64,7 @@ const router = createBrowserRouter([
       { path:'/userprofile', element:<UserProfile></UserProfile> },
       {path:'/myappointment',element:<MyAppointment></MyAppointment>},
       {path:'/payment',element:<Payment></Payment>},
+      {path:'/paymenthistory',element:<Paymenthistory></Paymenthistory>}
 
     ]
   },

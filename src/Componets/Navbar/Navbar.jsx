@@ -122,6 +122,11 @@ const Navbar = () => {
                 My Appointment
                 </li>
                 </Link>
+                <Link to={"/paymenthistory"}>
+                <li>
+                Payment History
+                </li>
+                </Link>
               </ul>
             </div>
             <button

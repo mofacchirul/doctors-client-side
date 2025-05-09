@@ -10,12 +10,12 @@ const MyAppointment = () => {
     const axios= Securecaxios()
     
     const handleCancel = async(id) => {
-        // এখানে তুমি cancel করার জন্য API কল দিতে পারো
+
         axios.delete(`/appointment/${id}`)
         toast.success("Appointment cancelled successfully!");
         await refetch(); 
         console.log("Cancel appointment with id:", id);
-        // fetch(`/api/cancel/${id}`, { method: "DELETE" }) ...
+
     };
  
    
