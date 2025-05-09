@@ -4,32 +4,30 @@ import Securecaxios from '../../../Axios/SecureAxios/SecureAxios';
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { AuthContext } from '../../../Componets/Provider/Auth';
 
+
 const CheakoutFrom = () => {
     const [appointment] = UserTanStack();
-
-    const { user } = useContext(AuthContext);
+const [clientSecret,setClientSecret]=useState('')
+   
     const stripe = useStripe();
     const elements = useElements();
-    const [errorMessage, setErrorMessage] = useState(null);
-    const [clientSecret, setClientSecret] = useState('');
+    const [error, setError] = useState(null);
     const [transactionId, setTransactionId] = useState('');
-    const axios = Securecaxios()
-
+const axios= Securecaxios()
+const {user}=useContext(AuthContext)
     const prices = appointment.map(item => item.price); 
     const totalPrice = prices.reduce((total, price) => total + price, 0);
     useEffect(() => {
-        if (totalPrice > 0) {
+  
             axios.post('/create-checkout-session', { price: totalPrice })
                 .then(res => {
+                    console.log("Stripe clientSecret:", res.data.clientSecret); // ✅ এটা দিয়ে চেক করো
                     setClientSecret(res.data.clientSecret);
                 })
                 .catch(error => console.error("Error fetching clientSecret:", error));
-        }
+        
     }, [axios, totalPrice]);
-
-    console.log("Prices: ", prices);
-    console.log("Total price: ", totalPrice);
-    console.log("Doctor appointments: ", appointment);
+    
     const handleSubmit = async (event) => {
 
         event.preventDefault();
@@ -38,16 +36,19 @@ const CheakoutFrom = () => {
         const card = elements.getElement(CardElement);
         if (!card) return;
 
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-            type: "card",
-            card,
-        });
-
-        if (error) {
-            setErrorMessage(error.message);
-            return;
-        } else {
-            setErrorMessage('');
+        const {error,paymentMethod}= await stripe.createPaymentMethod({
+            
+            type:'card',
+            card
+        })
+        // ...existing code...
+console.log(paymentMethod); // Example usage
+// ...existing code...
+        if(error){
+            setError(error.message)
+        }
+        else{
+            setError('')
         }
 
         const { paymentIntent, error: cardError } = await stripe.confirmCardPayment(clientSecret, {
@@ -67,9 +68,10 @@ const CheakoutFrom = () => {
 
         if (paymentIntent?.status === "succeeded") {
             setTransactionId(paymentIntent.id);
+        
+        }
 
-          
-    };
+      
     }
     return (
         <form onSubmit={handleSubmit}>
@@ -85,11 +87,11 @@ const CheakoutFrom = () => {
                     },
                 }}
             />
-            <button className="btn mt-4 btn-white" type="submit" >
+            <button  disabled={!stripe || !clientSecret} className="btn my-4 btn-block bg-blue-500 text-white" type="submit" >
                 Pay
             </button>
-            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-            {transactionId && <p className="text-green-600">Transaction ID: {transactionId}</p>}
+<p className='text-red-500'>{error}</p>
+<p className='text-green-500'> <span className='text-blue-400'>TransactionId</span> : {transactionId}</p>
         </form>
     );
 };
