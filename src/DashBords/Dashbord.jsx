@@ -17,7 +17,7 @@ const Dashbord = () => {
   const links = (
     <>
          <li>
-           <NavLink to="/" className="hover:bg-transparent  hover:text-inherit">
+           <NavLink to="/dashbord/adminhome" className="hover:bg-transparent  hover:text-inherit">
             Admin Home
            </NavLink>
          </li>

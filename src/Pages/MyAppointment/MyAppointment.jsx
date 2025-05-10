@@ -2,18 +2,19 @@ import React from 'react';
 import UserTanStack from './UserTanstack';
 import Securecaxios from '../../Axios/SecureAxios/SecureAxios';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const MyAppointment = () => {
     const [appointment,refetch,] = UserTanStack();
     console.log(appointment);
     const axios= Securecaxios()
-    
+    const navigate= useNavigate()
     const handleCancel = async(id) => {
 
         axios.delete(`/appointment/${id}`)
         toast.success("Appointment cancelled successfully!");
         await refetch(); 
+            navigate("/alldoctors");
         console.log("Cancel appointment with id:", id);
 
     };

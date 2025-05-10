@@ -2,9 +2,13 @@ import React, { useContext } from "react";
 import logo from "../../assets/logo (1).png";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/Auth";
+import UseAdmin from "./UseAdmin";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   console.log(user);
+  const [isadmin ]= UseAdmin()
+  console.log(isadmin);
+  
 
   const Links = (
     <>
@@ -42,7 +46,8 @@ const Navbar = () => {
           Contack Us
         </NavLink>
       </li>
-      <li>
+        {isadmin && (
+ <li>
         <NavLink
           to="/dashbord"
           className="hover:bg-transparent hover:text-inherit"
@@ -50,6 +55,9 @@ const Navbar = () => {
          Dashbord
         </NavLink>
       </li>
+        )
+      }
+     
     </>
   );
 
@@ -139,7 +147,7 @@ const Navbar = () => {
         ) : (
           <>
             <Link to={"/createaccount"}>
-              <button className="btn   mt-4 rounded-2xl ">
+              <button className="btn hover:bg-transparent  hover:text-inherit  mt-4 rounded-2xl ">
                 Create Account
               </button>
             </Link>

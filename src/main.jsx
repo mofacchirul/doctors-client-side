@@ -39,6 +39,7 @@ import PrivateRuter from './Private/UserPrivate/UserPrivate';
 import BlogForm from './DashBords/Page/BlogCard/BlogCard';
 import Payment from './DashBords/Page/Payment/Payment';
 import Paymenthistory from './Pages/Paymenthistory/Paymenthistory';
+import AdminHOme from './DashBords/Page/AdminHOme/AdminHOme';
 
 
 const queryClient = new QueryClient()
@@ -75,6 +76,7 @@ const router = createBrowserRouter([
       {path:'alluser', element:<Allusers></Allusers>},
       {path:'doctorfrom',element:<DoctorForm></DoctorForm>},
       {path:'blogcard',element:<BlogForm></BlogForm>},
+      {path:'adminhome',element:<AdminHOme></AdminHOme>}
      
     ]
   }
