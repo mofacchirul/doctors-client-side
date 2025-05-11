@@ -4,18 +4,18 @@ import { useQuery } from "@tanstack/react-query";
 import Securecaxios from "../../Axios/SecureAxios/SecureAxios";
 
 const UseAdmin = () => {
-    const { user } = useContext(AuthContext);
+    const { user,loading } = useContext(AuthContext);
     const axios = Securecaxios();
     const { data: isadmin } = useQuery({
-        queryKey: [user?.email, 'isadmin'],
-        enabled: !!user?.email, // Prevents query from running if user is null
+        queryKey: [user?.email, 'isadmin'], 
+        enabled:loading,
         queryFn: async () => {
             const res = await axios.get(`/user/${user.email}`);
             return res.data?.admin;
         },
     });
 
-    return [isadmin ]; // Ensures a valid return value
+    return [isadmin ]; 
 };
 
 export default UseAdmin;

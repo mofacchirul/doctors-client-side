@@ -3,10 +3,12 @@ import logo from "../../assets/logo (1).png";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/Auth";
 import UseAdmin from "./UseAdmin";
+
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
-  const [isadmin ]= UseAdmin()
+console.log(user);
+
+  const [isadmin ] = UseAdmin()
   console.log(isadmin);
   
 
@@ -46,18 +48,16 @@ const Navbar = () => {
           Contack Us
         </NavLink>
       </li>
-        {isadmin && (
- <li>
-        <NavLink
-          to="/dashbord"
-          className="hover:bg-transparent hover:text-inherit"
-        >
-         Dashbord
-        </NavLink>
-      </li>
-        )
-      }
-     
+        {user  && isadmin && (
+  <li>
+    <NavLink
+      to="/dashbord/alluser"
+      className="hover:bg-transparent hover:text-inherit"
+    >
+      Dashboard
+    </NavLink>
+  </li>
+)}
     </>
   );
 

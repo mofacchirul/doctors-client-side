@@ -38,7 +38,7 @@ const naviget = useNavigate()
   
 
   return (
-    <div className="flex flex-col  lg:flex-row-reverse items-center justify-center py-8 lg:py-12  ">
+    <div className="flex flex-col  lg:flex-row-reverse items-center justify-center py-4 lg:py-8  ">
       {/* Lottie Animation */}
       <div className="w-full hidden lg:block lg:w-1/2 flex justify-center">
         <Lottie animationData={animationData} />
@@ -68,29 +68,27 @@ const naviget = useNavigate()
             />
           </div>
 
-          {/* Password Field */}
-          <div className=" w-full relative">
-            <label className="label">
-              <span className=" text-black font-semibold">Password</span>
-            </label>
-            <input
-              type={view ? "password" : "text"}
-              name="password"
-              value={password} // Autofill password
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
+          <div className="relative">
+                    <label className="label"><span className=" text-black font-semibold">Password</span></label>
+                    <input
+                      type={view ? "password" : "text"}
+                      name="password"
+                      placeholder="Enter password"
+                      value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+
               className="input input-bordered"
-              required
-            />
-          
-            <button
-              type="button"
-              className='absolute mt-3 -ml-6 border-red-500'
-              onClick={() => setView(!view)}
-            >
-              {view ? <FaRegEyeSlash /> : <FaEye />}
-            </button>
-          </div>
+                      required
+                    />
+                    <button
+                      type="button"
+                      className="absolute right-9 top-[70%] transform -translate-y-1/2  text-lg"
+                      onClick={() => setView(!view)}
+                    >
+                      {view ? <FaRegEyeSlash /> : <FaEye />}
+                    </button>
+                  </div>
+
 
          
           

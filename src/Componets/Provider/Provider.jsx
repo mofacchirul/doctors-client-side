@@ -2,9 +2,7 @@ import React, {  useEffect, useState } from 'react';
 
 import {
     createUserWithEmailAndPassword,
-  
     GoogleAuthProvider,
-  
     onAuthStateChanged,
     signInWithEmailAndPassword,
     signInWithPopup,
@@ -13,11 +11,12 @@ import {
   } from "firebase/auth";
 import auth from '../Firebase/Firebase';
 import { AuthContext } from './Auth';
+import Publicaxios from '../../Axios/PublicAxios/PublicAxios';
 const Provider = ({children}) => {
     const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const provider = new GoogleAuthProvider();
- 
+   const axios = Publicaxios()
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -40,12 +39,27 @@ const Provider = ({children}) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      if(currentUser){
+             const userInfo= {email:currentUser.email}
+             axios.post('/jwt',userInfo)
+              .then(res=>{
+                if(res.data.token){
+                     localStorage.setItem('access-token',res.data.token);
+                       setLoading(false);
+                }
+              })
+      
+      }
+      else{
+              localStorage.removeItem('access-token')
+        setLoading(false);
+      }
+   
     });
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [axios]);
 
   const googleSignIn = () => {
     return signInWithPopup(auth, provider);
