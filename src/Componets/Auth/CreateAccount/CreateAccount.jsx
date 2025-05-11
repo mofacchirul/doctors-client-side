@@ -8,6 +8,7 @@ import Socail from "../Social/Socail";
 import { AuthContext } from "../../Provider/Auth";
 import { toast } from "react-toastify";
 import Securecaxios from "../../../Axios/SecureAxios/SecureAxios";
+import { Helmet } from "react-helmet";
 const Img_key = import.meta.env.VITE_IMG_KEY;
 const image_hosting = `https://api.imgbb.com/1/upload`;
 const Createaccount = () => {
@@ -67,13 +68,13 @@ const [imageFile, setImageFile] = useState(null);
   
     // ✅ Image Upload Section
     if (imageFile) {
-      console.log("Uploading file:", imageFile);
+  
       const imageFormData = new FormData();
       imageFormData.append("image", imageFile);
     
       try {
         const uploadUrl = `${image_hosting}?key=${Img_key}`;
-        console.log("Uploading to:", uploadUrl);
+
     
         const imgResponse = await fetch(uploadUrl, {
           method: "POST",
@@ -81,7 +82,7 @@ const [imageFile, setImageFile] = useState(null);
         });
     
         const imgData = await imgResponse.json();
-        console.log("Image Upload Response:", imgData);
+
     
         if (imgData.success) {
           imageUrl = imgData.data.url;
@@ -103,7 +104,7 @@ const [imageFile, setImageFile] = useState(null);
       image: imageUrl,
     };
   
-    console.log("User Data:", finalFormData); // Debug
+
   
     // ✅ Create user using context method
     createUser(formData.email, formData.password)
@@ -114,7 +115,7 @@ const [imageFile, setImageFile] = useState(null);
       photoURL:imageUrl
     }
     axios.post('/user',userinfo)
-    console.log(userinfo);
+
     updateUser(userinfo)
     toast.success(`${result.email} Logged Successful`)
     naviget('/')
@@ -134,6 +135,11 @@ const [imageFile, setImageFile] = useState(null);
 
   return (
     <div className="flex justify-center lg:flex-row-reverse items-center  py-8 lg:py-12 ">
+      <Helmet>
+                
+                <title>Doctor | Createaccount</title>
+            
+            </Helmet>
       <div className="w-96 hidden lg:block">
         <Lottie animationData={singup} />
       </div>

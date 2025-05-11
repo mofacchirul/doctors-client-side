@@ -14,8 +14,7 @@ const Securecaxios = () => {
  useEffect(()=>{
 axiossecure.interceptors.request.use(function (config) {
    const token =localStorage.getItem('access-token');
-   console.log(token);
-   console.log(localStorage.getItem('access-token'));
+
 
   config.headers.authorization = `Bearer ${token}`
 
@@ -30,7 +29,7 @@ axiossecure.interceptors.response.use(function (response) {
     return response;
   },    async (error) => {
     const status= error.response.status;
-console.log(status);
+
 
                 if(status === 401 || status === 403) {
           await logOut();

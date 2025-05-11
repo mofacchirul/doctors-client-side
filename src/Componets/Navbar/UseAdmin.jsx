@@ -12,7 +12,7 @@ const UseAdmin = () => {
         enabled:!loading,
         queryFn: async () => {
             const res = await axios.get(`/user/${user.email}`);
-            console.log(res);
+         
             
             return res.data?.admin;
         },

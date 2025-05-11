@@ -18,6 +18,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { Helmet } from "react-helmet";
 
 const AdminHome = () => {
   const axios = Securecaxios();
@@ -39,6 +40,11 @@ const AdminHome = () => {
 
   return (
     <div className="p-4 max-w-6xl mx-auto">
+      <Helmet>
+                
+                <title>Doctor |Admin Home</title>
+            
+            </Helmet>
       <h1 className="text-3xl font-bold mb-6">
         Hi, Welcome {user?.displayName || "back"}
       </h1>

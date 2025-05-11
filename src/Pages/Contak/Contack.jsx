@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { CiStopwatch } from "react-icons/ci";
 import { FaLocationCrosshairs } from "react-icons/fa6";
 import { IoCallOutline } from "react-icons/io5";
@@ -6,6 +7,11 @@ import { IoCallOutline } from "react-icons/io5";
 const Contact = () => {
   return (
     <div className="max-w-6xl mx-auto">
+      <Helmet>
+                
+                <title>Doctor | Contack</title>
+            
+            </Helmet>
       <div className="min-h-screen flex flex-col md:flex-row justify-center items-start gap-10 p-8 bg-white">
       {/* Contact Info */}
       <div className="md:w-1/3 space-y-5">

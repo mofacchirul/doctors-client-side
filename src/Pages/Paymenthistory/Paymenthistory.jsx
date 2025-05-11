@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Componets/Provider/Auth";
 import Securecaxios from "../../Axios/SecureAxios/SecureAxios";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 
 
 const Paymenthistory = () => {
@@ -21,11 +22,15 @@ const Paymenthistory = () => {
      })
      
 
-    console.log(payment);
     
 
     return (
         <div className="max-w-2xl  mx-auto ">
+            <Helmet>
+                
+                <title>Doctor | Payment History</title>
+            
+            </Helmet>
         
               <h1 className="text-center text-4xl font-bold lg:text-5xl">
                 Payment Histroy

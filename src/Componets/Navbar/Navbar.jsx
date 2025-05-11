@@ -6,10 +6,10 @@ import UseAdmin from "./UseAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-console.log(user);
+
 
   const [isadmin] = UseAdmin()
-  console.log(isadmin);
+
   
 
   const Links = (

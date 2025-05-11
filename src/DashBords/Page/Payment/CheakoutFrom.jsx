@@ -5,6 +5,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { AuthContext } from '../../../Componets/Provider/Auth';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 
 const CheakoutFrom = () => {
@@ -24,7 +25,7 @@ const {user}=useContext(AuthContext)
 if(totalPrice > 0){
     axios.post('/create-checkout-session', { price: totalPrice })
     .then(res => {
-        console.log("Stripe clientSecret:", res.data.clientSecret); 
+
         setClientSecret(res.data.clientSecret);
     })
     .catch(error => console.error("Error fetching clientSecret:", error));
@@ -45,9 +46,7 @@ if(totalPrice > 0){
             type:'card',
             card
         })
-        // ...existing code...
-console.log(paymentMethod); // Example usage
-// ...existing code...
+     
         if(error){
             setError(error.message)
         }
@@ -66,7 +65,7 @@ console.log(paymentMethod); // Example usage
         });
 
         if (cardError) {
-            console.log("Confirm Error", cardError);
+         
             return;
         }
 
@@ -102,6 +101,11 @@ console.log(paymentMethod); // Example usage
     }
     return (
         <form onSubmit={handleSubmit}>
+            <Helmet>
+                
+                <title>Doctor | Payment</title>
+            
+            </Helmet>
             <CardElement
                 options={{
                     style: {

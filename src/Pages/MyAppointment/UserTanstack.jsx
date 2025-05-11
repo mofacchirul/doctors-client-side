@@ -11,7 +11,7 @@ const UserTanStack = () => {
     queryFn: async () => {
         try {
           const res = await axios.get(`/appointment?email=${user?.email}`);
-          console.log("Fetched data:", res.data);
+
           return res.data;
         } catch (error) {
           console.error("Error fetching appointment:", error);

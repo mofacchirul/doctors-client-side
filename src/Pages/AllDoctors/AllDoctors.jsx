@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Coursestan from "./UseTanStack";
 import { GoArrowRight } from "react-icons/go";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const DoctorList = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const categories = [
@@ -27,6 +28,11 @@ const DoctorList = () => {
 
   return (
     <div className="p-4 max-w-[1350px] mx-auto">
+      <Helmet>
+                      
+                      <title>Doctor | All Doctor</title>
+                  
+                  </Helmet>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         <div className="lg:col-span-2">
           <div className="bg-white p-3 rounded-lg space-y-2">

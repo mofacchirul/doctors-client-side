@@ -3,6 +3,7 @@ import { IoIosContacts } from "react-icons/io";
 import Securecaxios from "../../../Axios/SecureAxios/SecureAxios";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const Allusers = () => {
 
@@ -16,13 +17,13 @@ const Allusers = () => {
   });
 
   const HandleDelet = async (id) => {
-    console.log(id);
+  
     axios.delete(`/user/${id}`);
 
     toast.success("Appointment cancelled successfully!");
   await  refetch();
 
-    console.log("Cancel appointment with id:", id);
+  
   };
 
   const HandleAdmin = (id) => {
@@ -36,6 +37,11 @@ const Allusers = () => {
 
   return (
     <div className="max-w-6xl mx-auto">
+      <Helmet>
+                      
+                      <title>Doctor | All User</title>
+                  
+                  </Helmet>
       <h1 className=" text-2xl  lg:text-4xl">All Users</h1>
       <div className="overflow-x-auto rounded-box border py-6 border-base-content/5 bg-base-100">
         <table className="table w-full">

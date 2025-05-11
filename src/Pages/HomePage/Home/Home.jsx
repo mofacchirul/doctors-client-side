@@ -8,10 +8,16 @@ import Reviwe from '../Reviwe/Reviwe';
 import BestDoctor from '../BestDoctor/BestDoctor';
 import Contact from '../../Contak/Contack';
 import BlogPage from '../../Blog/Blog';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
     return (
         <div>
+              <Helmet>
+                
+                <title>Doctor | Home</title>
+            
+            </Helmet>
             <Banner></Banner>
             <ClinicIntro></ClinicIntro>
             <Technologies></Technologies>

@@ -3,6 +3,7 @@ import { AuthContext } from '../../Componets/Provider/Auth';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateProfileField, setProfileData } from '../../Redux/userProfileSlice';
+import { Helmet } from 'react-helmet';
 
 const UserProfile = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -36,6 +37,12 @@ const UserProfile = () => {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
+   <Helmet>
+         
+                   <title>Doctor | User Profile</title>
+               
+               </Helmet>
+   
       <div className="flex flex-col items-center space-x-4">
         <div className="w-32 h-32 rounded-full bg-blue-300 flex items-center justify-center text-3xl text-purple-600">
           <img src={user?.photoURL} className='w-32 h-32 rounded-full p-2 ' alt="" />

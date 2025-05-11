@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Publicaxios from "../../../Axios/PublicAxios/PublicAxios";
+import { Helmet } from "react-helmet";
 
 
 const History = () => {
@@ -11,11 +12,15 @@ const History = () => {
           return res.data;
         },
       });
-      console.log(payment);
+ 
       
     return (
          <div className="max-w-2xl py-8 lg:py-12 mx-auto ">
-        
+        <Helmet>
+                
+                <title>Doctor | History</title>
+            
+            </Helmet>
               <h1 className="text-center text-4xl font-bold lg:text-5xl">
               User  Payment Histroy
               </h1>

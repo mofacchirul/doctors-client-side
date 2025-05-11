@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import Securecaxios from "../../../Axios/SecureAxios/SecureAxios";
+import { Helmet } from "react-helmet";
 const Img_key = import.meta.env.VITE_IMG_KEY;
 const image_hosting = `https://api.imgbb.com/1/upload?key=${Img_key}`;
 const BlogForm = () => {
@@ -57,6 +58,11 @@ const axios=Securecaxios()
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow mt-10">
+      <Helmet>
+                
+                <title>Doctor | Blog Card</title>
+            
+            </Helmet>
       <h2 className="text-2xl font-bold mb-4 text-center">Add Blog</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
 

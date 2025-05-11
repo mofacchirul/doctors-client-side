@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import Securecaxios from "../../../Axios/SecureAxios/SecureAxios";
+import { Helmet } from "react-helmet";
 
 const Img_key = import.meta.env.VITE_IMG_KEY;
 const image_hosting = `https://api.imgbb.com/1/upload?key=${Img_key}`;
@@ -58,7 +59,6 @@ const DoctorForm = () => {
         img: imageUrl,
       };
 
-      console.log("Submitted Doctor Data:", doctorData);
 
       // Backend API call করলে এখানে axios.post দিয়ে পাঠাও
    axios.post('/alldoctor',doctorData)
@@ -74,6 +74,12 @@ const DoctorForm = () => {
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
+    
+    <Helmet>
+                
+                <title>Doctor | Doctor From</title>
+            
+            </Helmet>
       <h2 className="text-2xl font-bold mb-4 text-center">Add Doctor</h2>
       <form onSubmit={handleSubmit} className="space-y-4 ">
 

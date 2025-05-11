@@ -3,10 +3,11 @@ import UserTanStack from './UserTanstack';
 import Securecaxios from '../../Axios/SecureAxios/SecureAxios';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const MyAppointment = () => {
     const [appointment,refetch,] = UserTanStack();
-    console.log(appointment);
+
     const axios= Securecaxios()
     const navigate= useNavigate()
     const handleCancel = async(id) => {
@@ -15,7 +16,7 @@ const MyAppointment = () => {
         toast.success("Appointment cancelled successfully!");
         await refetch(); 
             navigate("/alldoctors");
-        console.log("Cancel appointment with id:", id);
+
 
     };
  
@@ -23,6 +24,11 @@ const MyAppointment = () => {
 
     return (
         <div className="p-6 space-y-2 max-w-6xl mb-4 mx-auto">
+           <Helmet>
+                
+                <title>Doctor | My AppointMent</title>
+            
+            </Helmet>
             <h2 className="text-4xl lg:5xl font-semibold mb-4 text-center">My appointments</h2>
            {
 appointment.map(item=>

@@ -1,6 +1,7 @@
 import React from "react";
 import Publicaxios from "../../Axios/PublicAxios/PublicAxios";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 const BlogPage = () => {
 const axios=Publicaxios()
    const { data: blogs, } = useQuery({
@@ -19,6 +20,11 @@ const axios=Publicaxios()
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 lg:py-12">
+    <Helmet>
+                
+                <title>Doctor | Blog</title>
+            
+            </Helmet>
      <div className="lg:w-1/2 w-2/3  mx-auto text-center ">
      <h1 className="text-3xl font-bold text-center mb-6">Health Blogs</h1>
       <p>
