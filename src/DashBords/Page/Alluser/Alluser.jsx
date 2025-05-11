@@ -10,7 +10,7 @@ const Allusers = () => {
   const { data: users, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axios.get("/user"); // ✅ Added 'await' to resolve the promise
+      const res = await axios.get("/user"); 
       return res.data;
     },
   });

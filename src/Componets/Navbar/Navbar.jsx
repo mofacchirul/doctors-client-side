@@ -8,57 +8,77 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 console.log(user);
 
-  const [isadmin ] = UseAdmin()
+  const [isadmin] = UseAdmin()
   console.log(isadmin);
   
 
   const Links = (
-    <>
-      <li>
-        <NavLink to="/" className="hover:bg-transparent  hover:text-inherit">
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/alldoctors"
-          className="hover:bg-transparent hover:text-inherit"
-        >
-          All Doctors
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/about"
-          className="hover:bg-transparent hover:text-inherit"
-        >
-          About
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/blog" className="hover:bg-transparent hover:text-inherit">
-          Blog
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/contack"
-          className="hover:bg-transparent hover:text-inherit"
-        >
-          Contack Us
-        </NavLink>
-      </li>
-        {user  && isadmin && (
+   <>
   <li>
     <NavLink
-      to="/dashbord/alluser"
-      className="hover:bg-transparent hover:text-inherit"
+      to="/"
+      className={({ isActive }) =>
+        isActive ? "text-blue-500 font-bold" : "hover:bg-transparent hover:text-inherit"
+      }
     >
-      Dashboard
+      Home
     </NavLink>
   </li>
-)}
-    </>
+  <li>
+    <NavLink
+      to="/alldoctors"
+      className={({ isActive }) =>
+        isActive ? "text-blue-500 font-bold" : "hover:bg-transparent hover:text-inherit"
+      }
+    >
+      All Doctors
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      to="/about"
+      className={({ isActive }) =>
+        isActive ? "text-blue-500 font-bold" : "hover:bg-transparent hover:text-inherit"
+      }
+    >
+      About
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      to="/blog"
+      className={({ isActive }) =>
+        isActive ? "text-blue-500 font-bold" : "hover:bg-transparent hover:text-inherit"
+      }
+    >
+      Blog
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      to="/contack"
+      className={({ isActive }) =>
+        isActive ? "text-blue-500 font-bold" : "hover:bg-transparent hover:text-inherit"
+      }
+    >
+      Contact Us
+    </NavLink>
+  </li>
+
+  {user && isadmin && (
+    <li>
+      <NavLink
+        to="/dashbord/alluser"
+        className={({ isActive }) =>
+          isActive ? "text-blue-500 font-bold" : "hover:bg-transparent hover:text-inherit"
+        }
+      >
+        Dashboard
+      </NavLink>
+    </li>
+  )}
+</>
+
   );
 
   return (

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Componets/Provider/Auth';
 
@@ -11,6 +11,7 @@ const Securecaxios = () => {
   const navigate=useNavigate()
   const {logOut}=useContext(AuthContext)
 
+ useEffect(()=>{
 axiossecure.interceptors.request.use(function (config) {
    const token =localStorage.getItem('access-token');
    console.log(token);
@@ -38,6 +39,9 @@ console.log(status);
    
     return Promise.reject(error);
   });
+ },[navigate,logOut])
+
+
 
 
 
