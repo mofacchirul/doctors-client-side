@@ -39,7 +39,7 @@ const Paymenthistory = () => {
                 {
                     payment?.map(item=>
                         <div key={item._id} className="flex justify-between shadow-lg bg-white p-3 mb-2 rounded-2xl  border items-center">
-                        <div className="flex items-center gap-2">
+                        <div className="lg:flex items-center gap-1">
                            <img src="https://i.ibb.co.com/nZNTSwb/Payment-img.png" className="w-40" alt="" />
                            <div>
                            <p><span className="font-bold ">Email:</span> {item.email} </p>

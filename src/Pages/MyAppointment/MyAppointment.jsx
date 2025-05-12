@@ -33,7 +33,7 @@ const MyAppointment = () => {
            {
 appointment.map(item=>
     <div key={item._id} className='border p-2 rounded-2xl'>
-      <div className='flex  items-center justify-between'>
+      <div className='lg:flex space-y-2  items-center justify-between'>
       <div className='flex items-center'>
         <div>
             <img src={item.img} className='w-44 ' alt="" />

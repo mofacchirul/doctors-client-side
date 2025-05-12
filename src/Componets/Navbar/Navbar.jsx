@@ -1,16 +1,19 @@
 import React, { useContext } from "react";
 import logo from "../../assets/logo (1).png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/Auth";
 import UseAdmin from "./UseAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-
+const Navigate = useNavigate()
 
   const [isadmin] = UseAdmin()
 
-  
+  const HandleLogout=()=>{
+    logOut()
+    Navigate('/')
+  }
 
   const Links = (
    <>
@@ -115,7 +118,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{Links}</ul>
       </div>
 
-      <img className="lg:hidden w-24" src={logo} />
+      <img className="lg:hidden w-16 lg:w-24" src={logo} />
       <div className="navbar-end">
         {user ? (
           <div className="flex items-center justify-center">
@@ -158,7 +161,7 @@ const Navbar = () => {
               </ul>
             </div>
             <button
-              onClick={logOut}
+              onClick={HandleLogout}
               className="btn bg-red-700 text-white   rounded-2xl"
             >
               Sign Out

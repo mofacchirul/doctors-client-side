@@ -68,10 +68,10 @@ const DoctorList = () => {
                 </div>
                 <p className="text-sm text-blue-400">Available</p>
                 <h3 className="text-xl font-semibold">{doctor.name}</h3>
-<div className="flex justify-between items-center">
+<div className="lg:flex lg:justify-between lg:items-center">
 <p className="text-sm">{doctor.specialty}</p>
 <Link to={`/all_doctors_detels/${doctor._id}`}>
-<p className="text-blue-400 flex items-center justify-center text-sm">
+<p className="text-blue-400 flex items-center  text-sm">
   ReadMore.....
 <GoArrowRight className="mt-2 text-xl" /> 
 </p>
