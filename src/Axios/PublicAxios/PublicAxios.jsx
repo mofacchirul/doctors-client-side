@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiossecure= axios.create({
-    baseURL:'http://localhost:5000'
+    baseURL:'https://hospiter-server-side.vercel.app'
 })
 const Publicaxios = () => {
     return axiossecure

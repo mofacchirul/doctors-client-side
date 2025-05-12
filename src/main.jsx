@@ -56,7 +56,7 @@ const router = createBrowserRouter([
         path:'/all_doctors_detels/:id',
         element:<PrivateRuter><All_Doctors_detels></All_Doctors_detels></PrivateRuter>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/alldoctor/${params.id}`)
+          fetch(`https://hospiter-server-side.vercel.app/alldoctor/${params.id}`)
       },
       { path:'/about', element:<BestDoctor></BestDoctor> },
       { path:'/blog', element:<BlogPage></BlogPage> },
